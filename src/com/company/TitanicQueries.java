@@ -19,6 +19,8 @@ public class TitanicQueries {
 
 
              private PreparedStatement getPeopleByName;
+             private PreparedStatement getPeopleByage;
+             private PreparedStatement getPeopleByGender;
 
 
              public TitanicQueries() {
@@ -30,11 +32,12 @@ public class TitanicQueries {
 
 
                          //select people by name
-                         String sqlQuery = "select name, gender, age from titanic WHERE name like ?";
-                         getPeopleByName = con.prepareStatement(sqlQuery);
-
-
-
+                         String sqlQuery1 = "select name, gender, age from titanic WHERE name like ?";
+                         getPeopleByName = con.prepareStatement(sqlQuery1);
+                         String sqlQuery2 = "select age from titanic WHERE name like ?";
+                         getPeopleByage = con.prepareStatement(sqlQuery2);
+                         String sqlQuery3 = "select gender from titanic WHERE name like ?";
+                         getPeopleByGender = con.prepareStatement(sqlQuery3);
 
 
 
@@ -42,13 +45,9 @@ public class TitanicQueries {
 
 
                      } catch (Exception e) {
-
-
+                     
                      }
-
-
              }
-
 
              public List<Passenger> getPassengersByName(String name) {
                  ResultSet resultSet = null;
@@ -72,11 +71,6 @@ public class TitanicQueries {
 
 
                              }
-
-
-
-
-
 
                      } catch (SQLException e) {
 
